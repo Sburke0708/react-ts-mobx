@@ -1,22 +1,31 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import "./index.css";
+import App from "./components/App";
+import registerServiceWorker from "./registerServiceWorker";
 
-import App from './components/App';
-import { WishList } from './models/WishList';
+import { onPatch } from "mobx-state-tree";
+import makeInspectable from "mobx-devtools-mst";
+import Invoice from "./models/Invoice";
 
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+const invoice = Invoice.create({
+  currency: "CAS",
+  isPaid: false,
+  itemList: {
+    items: [
+      {
+        name: '',
+        price: 23,
+        quantity: 24,
+      }
+    ],
+  }
+});
 
-const wishList = WishList.create({
-  items: [{
-    image: '',
-    name: 'test',
-    price: 10.99,
-  }]
-})
+onPatch(invoice, patch => {
+  console.log(patch);
+});
+makeInspectable(invoice);
 
-ReactDOM.render(
-  <App wishList={wishList} />,
-  document.getElementById('root') as HTMLElement
-);
+ReactDOM.render(<App invoice={invoice} />, document.getElementById("root"));
 registerServiceWorker();
