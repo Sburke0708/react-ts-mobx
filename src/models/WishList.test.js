@@ -62,15 +62,15 @@ it("can add new items", () => {
 it("can get the total price of a wish list", () => {
   const list = WishList.create({
     items: [{
-        name: "Lego set",
-        price: 23.99,
-        image: ""
-      },
-      {
-        name: "Television",
-        price: 291.67,
-        image: ""
-      }
+      image: "",
+      name: "Lego set",
+      price: 23.99,
+    },
+    {
+      image: "",
+      name: "Television",
+      price: 291.67,
+    }
     ]
   });
   expect(list.totalPrice).toBe(315.66);

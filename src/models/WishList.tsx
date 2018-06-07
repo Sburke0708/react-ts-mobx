@@ -9,12 +9,12 @@ const { array, optional } = types;
  * Views are read only. Views are not allowed
  * to change the model, they are only allowed
  * to derive information from it.
-*/
+ */
 export const WishListItem = types
   .model({
+    image: "",
     name: types.string,
     price: types.number,
-    image: ""
   })
   .actions(self => ({
     changeName(newName: string) {

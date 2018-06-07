@@ -1,22 +1,17 @@
 import * as React from 'react';
+import WishListView from '../WishListView';
 import './index.css';
+// import WishListProps from '../../types/WishListProps';
 
-import logo from '../../assets/logo.svg';
-
-class App extends React.Component {
+export default class App extends React.Component<any> {
   public render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <WishListView wishList={this.props.wishList} />
       </div>
     );
   }
 }
-
-export default App;
