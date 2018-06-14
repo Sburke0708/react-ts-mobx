@@ -5,7 +5,6 @@ import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
 
 import { onPatch } from "mobx-state-tree";
-import makeInspectable from "mobx-devtools-mst";
 import Invoice from "./models/Invoice";
 
 const invoice = Invoice.create({
@@ -15,8 +14,8 @@ const invoice = Invoice.create({
     items: [
       {
         name: '',
-        price: 23,
-        quantity: 24,
+        price: 0,
+        quantity: 0,
       }
     ],
   }
@@ -25,7 +24,6 @@ const invoice = Invoice.create({
 onPatch(invoice, patch => {
   console.log(patch);
 });
-makeInspectable(invoice);
 
 ReactDOM.render(<App invoice={invoice} />, document.getElementById("root"));
 registerServiceWorker();

@@ -1,6 +1,8 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import { observer } from "mobx-react";
+// components
+import { Form } from '../Form';
+import { Field } from '../Field';
 import InvoiceItem from '../InvoiceItem';
 
 interface IItem {
@@ -24,30 +26,6 @@ interface IInvoiceProps {
 }
 
 class App extends React.Component<IInvoiceProps> {
-  private nameInput: React.RefObject<HTMLInputElement>;
-  private priceInput: React.RefObject<HTMLInputElement>;
-  private quantityInput: React.RefObject<HTMLInputElement>;
-
-  constructor(props) {
-    super(props);
-    this.nameInput = React.createRef();
-  }
-
-  public onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    const { invoice } = this.props;
-    e.preventDefault();
-    const name = (ReactDOM.findDOMNode(this.refs.author) as HTMLInputElement).value;
-    const price = (ReactDOM.findDOMNode(this.refs.price) as HTMLInputElement).value;
-    const quantity = (ReactDOM.findDOMNode(this.refs.quantity) as HTMLInputElement).value;
-    invoice.itemList.add({
-      name,
-      price,
-      quantity
-    });
-    // e.target.reset();
-    // this.nameInput.focus();
-  }
-
   public render() {
     const { invoice } = this.props;
     return (
@@ -62,24 +40,26 @@ class App extends React.Component<IInvoiceProps> {
           </button>
         )}
 
-        <form onSubmit={this.onSubmit}>
-          <label>
-            Name
-            <input ref={this.nameInput} />
-          </label>
-
-          <label>
-            Quantity
-            <input ref={this.quantityInput} />
-          </label>
-
-          <label>
-            Price
-            <input ref={this.priceInput} />
-          </label>
-
-          <button type="submit">Add</button>
-        </form>
+        <Form
+          action="http://localhost:4351/api/contactus"
+          render={() => (
+            <React.Fragment>
+              <div className="alert alert-info" role="alert">
+                Enter the information below and we'll get back to you as soon as we
+                can.
+          </div>
+              <Field id="name" label="Name" />
+              <Field id="email" label="Email" />
+              <Field
+                id="reason"
+                label="Reason"
+                editor="dropdown"
+                options={["", "Marketing", "Support", "Feedback", "Jobs"]}
+              />
+              <Field id="notes" label="Notes" editor="multilinetextbox" />
+            </React.Fragment>
+          )}
+        />
 
         <strong>Total Cost ${invoice.itemList.total().toFixed(2)}</strong>
 
