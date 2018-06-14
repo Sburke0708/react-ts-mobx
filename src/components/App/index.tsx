@@ -47,14 +47,14 @@ class App extends React.Component<IInvoiceProps> {
               <div className="alert alert-info" role="alert">
                 Enter the information below and we'll get back to you as soon as we
                 can.
-          </div>
+              </div>
               <Field id="name" label="Name" />
               <Field id="email" label="Email" />
               <Field
                 id="reason"
                 label="Reason"
                 editor="dropdown"
-                options={["", "Marketing", "Support", "Feedback", "Jobs"]}
+                options={["Marketing", "Support", "Feedback", "Jobs"]}
               />
               <Field id="notes" label="Notes" editor="multilinetextbox" />
             </React.Fragment>
