@@ -20,14 +20,6 @@ interface IFormProps {
   render: () => React.ReactNode
 }
 
-interface IFormProps {
-  /* The http path that the form will be posted to */
-  action: string;
-
-  /* A prop which allows content to be injected */
-  render: () => React.ReactNode
-}
-
 export interface IValues {
   /* Key value pairs for all the field values with key being the field name */
   [key: string]: any;
