@@ -9,4 +9,5 @@ export default styled.article`
     [main-start] minmax(0, 56em) [main-end]
     minmax(1em, 1fr) [full-end];
   grid-gap: 1em;
+  padding-top: 20px;
 `;
