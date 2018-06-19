@@ -1,7 +1,18 @@
-import * as React from 'react';
+import styled from 'styled-components';
+import colors from '../styles/colors';
 
-interface IButtonsProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type?: 'button';
+interface IbuttonProps {
+  primary?: boolean
 }
 
-export const Button: React.SFC<IButtonsProps> = (props) => <button {...props} type="button" />;
+export default styled.button`
+  background-color: ${(props: IbuttonProps) => (props.primary ? colors.blueDark : "#110cc7")};
+  border: 2px solid ${colors.grayLight};
+  color: ${colors.white};
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+`;

@@ -1,11 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import "./index.css";
-import App from "./components/App";
+import { Provider } from 'mobx-react';
+import { createBrowserHistory } from 'history';
 import registerServiceWorker from "./registerServiceWorker";
 
+import { createStores } from './stores';
 
-const invoice = {};
+// components
+import App from "./components/App";
+import "./index.css";
 
-ReactDOM.render(<App invoice={invoice} />, document.getElementById("root"));
+// set Mobx stores
+const history = createBrowserHistory();
+const rootStore = createStores(history);
+
+ReactDOM.render(
+  <Provider {...rootStore}>
+    <App history={history} />
+  </Provider>,
+  document.getElementById("root")
+);
 registerServiceWorker();

@@ -1,0 +1,20 @@
+.main-navigation {
+  display: inline-flex;
+  margin: 0;
+  height: 80px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.main-navigation li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin: 0 40px;
+}
+
+.main-navigation li.logo,
+.main-navigation li.logo h1 {
+  margin: 0;
+  color: #fff;
+}
