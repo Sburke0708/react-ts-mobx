@@ -9,6 +9,7 @@ import Root from '../../helpers/Root';
 // routes
 import About from '../../components/About';
 import BeerList from '../../components/BeerList';
+import SingleBeer from '../../components/SingleBeer';
 
 // App component
 export default hot(module)(({ history }) => (
@@ -18,6 +19,7 @@ export default hot(module)(({ history }) => (
         <Naviation />
         <Route exact={true} path="/" component={BeerList} />
         <Route exact={true} path="/about" component={About} />
+        <Route exact={true} path="/beer/:id" component={SingleBeer} />
       </>
     </Router>
   </Root>

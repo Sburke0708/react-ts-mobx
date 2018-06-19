@@ -15,7 +15,8 @@ interface IBeerListProps {
   beerStore: {
     beerList: IBeer[],
     fetchBeerList: () => void
-  }
+  },
+  routerStore: any
 };
 
 // styled
@@ -28,14 +29,15 @@ const BeerListContainer = styled.div`
   background: #fe8a00;
 `
 
-@inject('beerStore')
+@inject('beerStore', 'routerStore')
 @observer
 export default class BeerList extends React.Component<IBeerListProps, {}> {
   public static defaultProps: IBeerListProps = {
     beerStore: {
       beerList: [],
       fetchBeerList: () => { }
-    }
+    },
+    routerStore: {}
   }
 
   public componentDidMount() {
@@ -43,12 +45,13 @@ export default class BeerList extends React.Component<IBeerListProps, {}> {
   }
 
   public render() {
-    const { beerList } = this.props.beerStore;
+    const { routerStore, beerStore } = this.props;
+    const { beerList } = beerStore;
 
     return (
       <BeerListContainer>
         {beerList.map(b => (
-          <BeerCard key={b.id} beer={b} />
+          <BeerCard key={b.id} beer={b} routerStore={routerStore} />
         ))}
       </BeerListContainer>
     )
