@@ -1,16 +1,29 @@
 import * as React from 'react';
+import { observer } from 'mobx-react';
 import NavLink from '../NavLink';
 import MainNavigation from '../MainNavigation';
 
 import './index.css';
 
-const Navigation: React.SFC = () => {
+interface INavigationProps {
+  cartStore: {
+    cartCount;
+  }
+}
+
+const Navigation: React.SFC<INavigationProps> = observer(({ cartStore }) => {
+  const { cartCount } = cartStore;
   return (
     <MainNavigation>
       <ul className="main-navigation">
         <li className="logo">
           <NavLink to="/">
             <h1>Beer Store</h1>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/">
+            Cart: {cartCount}
           </NavLink>
         </li>
         <li>
@@ -21,6 +34,6 @@ const Navigation: React.SFC = () => {
       </ul>
     </MainNavigation>
   );
-}
+})
 
 export default Navigation;

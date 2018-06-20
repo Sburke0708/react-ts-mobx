@@ -4,11 +4,15 @@ class SingleBeerStore {
   @observable public singleBeer = {};
 
   @action public fetchSingleBeer = async (id: string) => {
-    const response = await fetch(`https://api.punkapi.com/v2/beers/${id}`);
-    const json = await response.json();
-    runInAction(() => {
-      this.singleBeer = json[0];
-    });
+    try {
+      const response = await fetch(`https://api.punkapi.com/v2/beers/${id}`);
+      const json = await response.json();
+      runInAction(() => {
+        this.singleBeer = json[0];
+      });
+    } catch (err) {
+      throw new Error(err);
+    }
   };
 };
 

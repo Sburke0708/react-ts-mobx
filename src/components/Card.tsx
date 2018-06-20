@@ -8,6 +8,7 @@ export default styled.li`
   margin: auto;
   text-align: center;
   > img {
-    max-width: 300px;
+    max-width: 100px;
+    margin: 0 auto;
   }
 `;

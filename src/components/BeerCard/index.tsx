@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Card from '../Card';
-import Button from '../Button';
+import { Button } from '../Button';
 
 interface IBeer {
   id: string;
@@ -18,7 +18,9 @@ const BeerCard: React.SFC<IBeerCardProps> = ({ beer, routerStore }) => {
     <Card>
       <img src={beer.image_url} height="300px" />
       {beer.name}
-      <Button onClick={() => routerStore.push(`/beer/${beer.id}`)}>Select</Button>
+      <Button onClick={() => routerStore.push(`/beer/${beer.id}`)}>
+        Details
+      </Button>
     </Card>
   )
 }

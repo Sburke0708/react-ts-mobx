@@ -3,7 +3,6 @@
   margin: 0;
   height: 80px;
   width: 100%;
-  justify-content: space-between;
   box-shadow: 0px 25px 20px -15px #00002A;
 }
 
@@ -12,10 +11,12 @@
   display: flex;
   align-items: center;
   margin: 0 40px;
+  flex: 1;
 }
 
 .main-navigation li.logo,
 .main-navigation li.logo h1 {
   margin: 0;
   color: #fff;
+  flex: 10;
 }
