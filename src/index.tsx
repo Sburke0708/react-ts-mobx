@@ -8,7 +8,7 @@ import { createStores } from './stores';
 
 // components
 import App from "./components/App";
-import "./index.css";
+import './styles/global';
 
 // set Mobx stores
 const history = createBrowserHistory();
