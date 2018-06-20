@@ -28,6 +28,7 @@ interface ISingleBeerProps {
   }
   singleBeerStore: {
     fetchSingleBeer: (id: string) => {};
+    reset: () => void;
     singleBeer: {
       description: string;
       image_url: string;
@@ -52,6 +53,9 @@ export default class SingleBeer extends React.Component<ISingleBeerProps> {
   public componentDidMount() {
     const { id } = this.props.match.params;
     this.props.singleBeerStore.fetchSingleBeer(id);
+  }
+  public componentWillUnmount() {
+    this.props.singleBeerStore.reset();
   }
   public isInCart = () => {
     const { cartStore, singleBeerStore } = this.props;

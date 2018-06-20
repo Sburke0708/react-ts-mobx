@@ -14,6 +14,9 @@ class SingleBeerStore {
       throw new Error(err);
     }
   };
+  @action public reset = () => {
+    this.singleBeer = {};
+  }
 };
 
 const singleBeerStore = new SingleBeerStore;

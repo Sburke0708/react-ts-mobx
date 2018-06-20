@@ -14,6 +14,9 @@ class BeerStore {
       throw new Error(err);
     }
   };
+  @action public reset = () => {
+    this.beerList = [];
+  }
 };
 
 const beerStore = new BeerStore;

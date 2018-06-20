@@ -13,8 +13,9 @@ interface IBeer {
 
 interface IBeerListProps {
   beerStore: {
-    beerList: IBeer[],
-    fetchBeerList: () => void
+    beerList: IBeer[];
+    fetchBeerList: () => void;
+    reset: () => void;
   },
   routerStore: any
 };
@@ -35,13 +36,18 @@ export default class BeerList extends React.Component<IBeerListProps, {}> {
   public static defaultProps: IBeerListProps = {
     beerStore: {
       beerList: [],
-      fetchBeerList: () => { }
+      fetchBeerList: () => { },
+      reset: () => { },
     },
     routerStore: {}
   }
 
   public componentDidMount() {
     this.props.beerStore.fetchBeerList();
+  }
+
+  public componentWillUnmount() {
+    this.props.beerStore.reset();
   }
 
   public render() {
