@@ -24,6 +24,7 @@ interface ISingleBeerProps {
   cartStore: {
     items: IItem[];
     addToCart: (p: {}) => void;
+    cartCount: () => number;
   }
   singleBeerStore: {
     fetchSingleBeer: (id: string) => {};
@@ -58,6 +59,13 @@ export default class SingleBeer extends React.Component<ISingleBeerProps> {
       return b.name === singleBeerStore.singleBeer.name
     });
   }
+  public numberInCart = () => {
+    const { cartStore, singleBeerStore } = this.props;
+    const numberInCart = cartStore.items.filter(b => {
+      return b.name === singleBeerStore.singleBeer.name
+    });
+    return numberInCart.length;
+  }
   public render() {
     const { singleBeer } = this.props.singleBeerStore;
     const { addToCart } = this.props.cartStore;
@@ -70,7 +78,7 @@ export default class SingleBeer extends React.Component<ISingleBeerProps> {
               negative={this.isInCart()}
               onClick={() => addToCart(singleBeer)}
             >
-              + Cart
+              Added: ({this.numberInCart() || 0})
             </ActionButton>
           </TitleRow>
           {singleBeer.tagline && <Tag>{singleBeer.tagline}</Tag>}
