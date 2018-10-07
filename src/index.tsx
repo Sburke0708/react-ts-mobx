@@ -1,29 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import "./index.css";
-import App from "./components/App";
+import { Provider } from 'mobx-react';
+import { createBrowserHistory } from 'history';
 import registerServiceWorker from "./registerServiceWorker";
 
-import { onPatch } from "mobx-state-tree";
-import Invoice from "./models/Invoice";
+import { createStores } from './stores';
 
-const invoice = Invoice.create({
-  currency: "CAS",
-  isPaid: false,
-  itemList: {
-    items: [
-      {
-        name: '',
-        price: 0,
-        quantity: 0,
-      }
-    ],
-  }
-});
+// components
+import App from "./components/App";
+import './styles/global';
 
-onPatch(invoice, patch => {
-  console.log(patch);
-});
+// set Mobx stores
+const history = createBrowserHistory();
+const rootStore = createStores(history);
 
-ReactDOM.render(<App invoice={invoice} />, document.getElementById("root"));
+ReactDOM.render(
+  <Provider {...rootStore}>
+    <App history={history} />
+  </Provider>,
+  document.getElementById("root")
+);
 registerServiceWorker();

@@ -1,9 +1,0 @@
-Variable types
-
-If a variable type is not defined, it defaults to 'any'. However if you know the variable type ahead of time, use 'variable annotations'.
-
-Example:
-let a:number;
-a = 5;
-a = true; // error
-a = 'a'; // error
